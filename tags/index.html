@@ -365,7 +365,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -921,6 +921,7 @@
   
 
   <script>
+  //标签页切换
   document.addEventListener('visibilitychange', function () {
     if (document.visibilityState == 'hidden') {
         normal_title = document.title;
@@ -929,6 +930,34 @@
 	document.title = normal_title;
     }
   });
+  //监听用户剪贴板加入版权
+          function setClipboardText(event){
+                    event.preventDefault();
+                    var node = document.createElement('div');
+                    node.innerHTML=window.getSelection(0).toString();
+                    var htmlData = '<div>著作权归作者所有。<br />'
+                                    + '商业转载请联系作者获得授权，非商业转载请注明出处。<br />'
+                                    + '作者：Yoonaier<br />链接：https://yoonaier.github.io<br />'
+                                    + '来源：Yoonaier<br /><br />'
+                                    + node.innerHTML
+                                    + '</div>';
+                    var textData = '著作权归作者所有。\n'
+                                    + '商业转载请联系作者获得授权，非商业转载请注明出处。\n'
+                                    + '链接：https://yoonaier.github.io\n'
+                                    + '来源：Yoonaier\n\n'
+                                    + window.getSelection(0).toString();
+                    if(event.clipboardData){
+                        event.clipboardData.setData("text/html", htmlData);
+                        event.clipboardData.setData('text/plain', textData);
+                    }
+                    else if(window.clipboardData){
+                        return window.clipboardData.setData("text", textData);
+                    }
+        };
+
+        document.addEventListener('copy', function(event){
+            setClipboardText(event);
+        });
   </script>
 <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

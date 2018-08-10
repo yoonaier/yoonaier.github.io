@@ -291,6 +291,127 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/10/标签页切换改变标题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yoonaier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoonaier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/10/标签页切换改变标题/" itemprop="url">标签页切换改变标题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-10T14:31:28+08:00">
+                2018-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>废话不多说，先上代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'visibilitychange'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.visibilityState == <span class="string">'hidden'</span>) &#123;</span><br><span class="line">        normal_title = <span class="built_in">document</span>.title;</span><br><span class="line">        <span class="built_in">document</span>.title = <span class="string">'写如诗的代码，分享温而不沸的生活。'</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span>&#123; </span><br><span class="line">	<span class="built_in">document</span>.title = normal_title;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/09/博客搭建教程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -447,7 +568,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -999,6 +1120,7 @@
   
 
   <script>
+  //标签页切换
   document.addEventListener('visibilitychange', function () {
     if (document.visibilityState == 'hidden') {
         normal_title = document.title;
@@ -1007,6 +1129,34 @@
 	document.title = normal_title;
     }
   });
+  //监听用户剪贴板加入版权
+          function setClipboardText(event){
+                    event.preventDefault();
+                    var node = document.createElement('div');
+                    node.innerHTML=window.getSelection(0).toString();
+                    var htmlData = '<div>著作权归作者所有。<br />'
+                                    + '商业转载请联系作者获得授权，非商业转载请注明出处。<br />'
+                                    + '作者：Yoonaier<br />链接：https://yoonaier.github.io<br />'
+                                    + '来源：Yoonaier<br /><br />'
+                                    + node.innerHTML
+                                    + '</div>';
+                    var textData = '著作权归作者所有。\n'
+                                    + '商业转载请联系作者获得授权，非商业转载请注明出处。\n'
+                                    + '链接：https://yoonaier.github.io\n'
+                                    + '来源：Yoonaier\n\n'
+                                    + window.getSelection(0).toString();
+                    if(event.clipboardData){
+                        event.clipboardData.setData("text/html", htmlData);
+                        event.clipboardData.setData('text/plain', textData);
+                    }
+                    else if(window.clipboardData){
+                        return window.clipboardData.setData("text", textData);
+                    }
+        };
+
+        document.addEventListener('copy', function(event){
+            setClipboardText(event);
+        });
   </script>
 <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[标签页切换改变标题]]></title>
+    <url>%2F2018%2F08%2F10%2F%E6%A0%87%E7%AD%BE%E9%A1%B5%E5%88%87%E6%8D%A2%E6%94%B9%E5%8F%98%E6%A0%87%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[废话不多说，先上代码： 12345678document.addEventListener('visibilitychange', function () &#123; if (document.visibilityState == 'hidden') &#123; normal_title = document.title; document.title = '写如诗的代码，分享温而不沸的生活。'; &#125; else&#123; document.title = normal_title; &#125; &#125;);]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[博客搭建教程]]></title>
     <url>%2F2018%2F08%2F09%2F%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B%2F</url>
     <content type="text"></content>
